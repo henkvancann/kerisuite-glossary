@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Specalyzer Report</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
+  <style>
+    body {
+      padding: 2rem;
+      background-color: #f8f9fa;
+    }
+    .card {
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.05);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .card-header {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .report-header {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, #6610f2, #198754);
+      color: white;
+      box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1);
+    }
+    .report-header h1 {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .report-header p {
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 0.25rem;
+    }
+    .report-footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #dee2e6;
+      color: #6c757d;
+      font-size: 0.875rem;
+    }
+    .version-list {
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 0.75rem;
+      border: 1px solid #dee2e6;
+      border-radius: 0.5rem;
+      background-color: #f8f9fa;
+      margin-top: 1rem;
+    }
+    .badge-container {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .refresh-btn {
+      transition: all 0.3s ease;
+    }
+    .refresh-btn:hover {
+      transform: rotate(180deg);
+    }
+    .info-icon {
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="report-header">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <h1><i class="bi bi-search"></i> Specalyzer Report</h1>
+          <p><strong><i class="bi bi-globe"></i> URL:</strong> <a href="https://github.com/trustoverip/kerisuite-glossary" target="_blank" class="text-light">https://github.com/trustoverip/kerisuite-glossary</a></p>
+          <p><strong><i class="bi bi-calendar3"></i> Generated:</strong> 7/20/2026, 2:47:49 PM</p>
+        </div>
+        <div>
+          <a href="javascript:void(0);" onclick="refreshReport()" class="btn btn-light">
+            <i class="bi bi-arrow-repeat refresh-btn"></i> Refresh Analysis
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-info mb-4 d-flex align-items-center">
+      <i class="bi bi-info-circle me-3 fs-4"></i> 
+      <div>This report provides an analysis of the specification at the URL above.</div>
+    </div>
+
+    <div class="card border-primary mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <i class="bi bi-github me-2"></i>Repository
+      </div>
+      <div class="card-body">
+        
+    <div class="d-flex align-items-center mb-3">
+      <i class="bi bi-github fs-3 me-2"></i>
+      <h5 class="mb-0">Repository URL:</h5>
+    </div>
+    <p><a href="https://github.com/trustoverip/kerisuite-glossary" target="_blank" class="btn btn-outline-primary">
+      <i class="bi bi-box-arrow-up-right me-1"></i> https://github.com/trustoverip/kerisuite-glossary
+    </a></p>
+    
+        <div class="badge-container">
+          <img src="https://img.shields.io/github/stars/trustoverip/kerisuite-glossary?style=flat-square&logo=github" alt="GitHub stars" class="me-2">
+          <img src="https://img.shields.io/github/last-commit/trustoverip/kerisuite-glossary?style=flat-square&logo=git" alt="Last commit">
+        </div>
+      
+  
+      </div>
+    </div>
+  
+    <div class="card border-warning mb-4 shadow-sm">
+      <div class="card-header bg-warning text-white">
+        <i class="bi bi-exclamation-triangle me-2"></i>PDF Status
+      </div>
+      <div class="card-body">
+        
+      <div class="d-flex align-items-center">
+        <div class="rounded-circle bg-warning text-white p-2 me-3">
+          <i class="bi bi-file-earmark-pdf fs-3"></i>
+        </div>
+        <div>
+          <h5 class="mb-1">PDF Document Not Found</h5>
+          <p class="mb-0 text-warning">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            The PDF version of this specification could not be found.
+          </p>
+          <small class="text-muted mt-2">PDF files make specifications more accessible and preserve content for offline reading.</small>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+  
+    <div class="card border-info mb-4 shadow-sm">
+      <div class="card-header bg-info text-white">
+        <i class="bi bi-info-circle me-2"></i>Build Tool Version (Spec-Up-T)
+      </div>
+      <div class="card-body">
+        
+      <div class="d-flex align-items-center">
+        <div class="rounded-circle bg-info text-white p-2 me-3">
+          <i class="bi bi-hammer fs-3"></i>
+        </div>
+        <div>
+          <h5 class="mb-1">Build Tool: Spec-Up-T</h5>
+          <p class="mb-0"><code>^1.6.0</code></p>
+          <small class="text-muted">This specification was built using Spec-Up-T build tool (version ^1.6.0). This is the GitHub repo/npm package version that generated the HTML specification.</small>
+          <div class="mt-2 p-2 bg-light rounded">
+            <small class="text-info">
+              <i class="bi bi-info-circle me-1"></i>
+              <strong>About Build Tool Versions:</strong> 
+              This shows the version of the GitHub repository/npm package used to generate the specification HTML.
+              Symbols like <code>^</code>, <code>~</code>, or <code>*</code> indicate version ranges, not exact versions.
+              <code>^1.0.8</code> means "compatible with 1.0.8" (allows 1.x.x but not 2.0.0).
+              <code>~1.0.8</code> means "reasonably close to 1.0.8" (allows 1.0.x but not 1.1.0).
+            </small>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+  
+    <div class="card border-info mb-4 shadow-sm">
+      <div class="card-header bg-info text-white">
+        <i class="bi bi-info-circle me-2"></i>Specification Version History
+      </div>
+      <div class="card-body">
+        
+      <div class="d-flex align-items-center">
+        <div class="rounded-circle bg-secondary text-white p-2 me-3">
+          <i class="bi bi-archive fs-3"></i>
+        </div>
+        <div>
+          <h5 class="mb-1">No Specification Version History</h5>
+          <p class="mb-0 text-muted">
+            <i class="bi bi-info-circle me-1"></i>
+            This specification does not have archived versions or release history available.
+          </p>
+          <div class="mt-2 p-2 bg-light rounded">
+            <small class="text-muted">
+              <i class="bi bi-info-circle me-1"></i>
+              <strong>What is Specification Version History?</strong> 
+              This refers to different releases or versions of the specification content itself (not the build tool). 
+              These are typically stored in a "versions" directory and represent different points in time when the specification was published.
+            </small>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+  
+    <div class="report-footer">
+      <div class="row">
+        <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+          <p class="mb-1">Generated with Specalyzer v1.0.2</p>
+          <small>A tool for analyzing specifications built with Spec-Up-T</small>
+        </div>
+        <div class="col-md-6 text-md-end text-center">
+          <p class="mb-1">
+            <a href="https://github.com/blockchainbird/specalyzer" target="_blank" class="btn btn-sm btn-outline-secondary">
+              <i class="bi bi-github me-1"></i> GitHub Repository
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="text-center mt-2">
+        <small class="text-muted">© 2026 Blockchain Bird - Specalyzer</small>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function refreshReport() {
+      const url = "https://github.com/trustoverip/kerisuite-glossary";
+      const command = "npx specalyzer " + url + " --html";
+      
+      if (confirm("This will run the following command in your terminal:\n\n" + command + "\n\nContinue?")) {
+        const newTab = window.open('', '_blank');
+        newTab.document.write('<html><head><title>Refreshing Specalyzer Report</title><style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6;}pre{background:#f4f4f4;padding:10px;border-radius:5px;}</style></head><body><h1>Refreshing Specalyzer Report</h1><p>To refresh the analysis, please run the following command in your terminal:</p><pre>' + command + '</pre><p>A new report will be generated and opened in your browser.</p><p>This tab can be closed.</p></body></html>');
+        newTab.document.close();
+      }
+    }
+  </script>
+</body>
+</html>
