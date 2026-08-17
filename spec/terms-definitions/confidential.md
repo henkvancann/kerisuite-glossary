@@ -1,5 +1,5 @@
 [[def: confidential]]
 
-˜All statements in a conversation are only known by the parties to that conversation.
+~ ˜All statements in a conversation are only known by the parties to that conversation.
 
-Also see: [[ref: confidentiality]]
+~ Also see: [[ref: confidentiality]]

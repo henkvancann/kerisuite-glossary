@@ -1,5 +1,5 @@
 [[def: authentic]]
 
-~The origin and content of any statement by a party to a conversation are provable to any other party.
+~ ~The origin and content of any statement by a party to a conversation are provable to any other party.
 
-Also see [[ref: authenticity]]
+~ Also see [[ref: authenticity]]
